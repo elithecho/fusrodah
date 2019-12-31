@@ -1,10 +1,12 @@
+MIGRATION_DIR = "migrate".freeze
+
 migrate = lambda do |env, version|
   ENV["RACK_ENV"] = env
   require_relative "db"
   require "logger"
   Sequel.extension :migration
   DB.loggers << Logger.new($stdout) if DB.loggers.empty?
-  Sequel::Migrator.apply(DB, "migrate", version)
+  Sequel::Migrator.apply(DB, MIGRATION_DIR, version)
 end
 
 task :migrate do

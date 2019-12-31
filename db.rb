@@ -12,7 +12,7 @@ require "sequel/core"
 # passed to subprocesses.  APP_DATABASE_URL may contain passwords.
 
 DB= if env == "development" || env == "test"
-      Sequel.sqlite
+      Sequel.sqlite("database.db")
     else
       Sequel.connect(ENV.delete("DATABASE_URL"))
     end
