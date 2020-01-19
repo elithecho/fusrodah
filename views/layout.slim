@@ -1,0 +1,9 @@
+doctype 5
+html lang="en"
+  head
+    meta charset="UTF-8"
+    title Carpro
+    script src="#{timestamp_path './index.js'}" defer="true"
+    link rel="stylesheet" type="text/css" href="#{timestamp_path './index.css'}"
+  body
+    == yield
