@@ -1,2 +1,2 @@
 server: bundle exec rerun --ignore 'src/*' -- rackup --port 3000
-css: npm run dev
+css: npm run watch

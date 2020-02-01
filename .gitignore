@@ -2,3 +2,5 @@
 .env.development
 .env.test
 database.db
+
+/node_modules/

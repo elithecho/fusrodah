@@ -1,5 +1,5 @@
 require "roda"
-require_relative "./models"
+# require_relative "./models"
 
 class App < Roda
   plugin :timestamp_public
