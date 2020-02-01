@@ -4,3 +4,6 @@
 database.db
 
 /node_modules/
+
+public/app.css
+public/app.js

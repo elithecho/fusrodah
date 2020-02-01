@@ -10,14 +10,8 @@ const globAll = require('glob-all');
 const TailwindExtractor = content => {
   return content.match(/[\w-/:]+(?<!:)/g) || [];
 }
-// class TailwindExtractor {
-//   static extract(content) {
-//     return content.match(/[A-z0-9-:\/]+/g);
-//   }
-// }
 
 module.exports = (env, options) => ({
-  mode: process.env.NODE_ENV || 'development',
   optimization: {
     minimizer: [
       new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
@@ -60,7 +54,7 @@ module.exports = (env, options) => ({
   plugins: [
     new MiniCssExtractPlugin({ filename: '../public/app.css' }),
     //new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
-    ...(this.mode === 'production' ? [
+    ...(options.mode === 'production' ? [
       new PurgecssPlugin({
         paths: globAll.sync([
           path.join(__dirname, "../views/**/*.slim"),
