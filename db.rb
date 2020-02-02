@@ -1,9 +1,9 @@
 env = ENV["RACK_ENV"] || "development"
 
-if env == "production"
+if %w[development test].include?(env)
   require "dotenv"
 
-  Dotenv.load(".env", ".env.##{env}")
+  Dotenv.load(".env", ".env.#{env}")
 end
 
 require "sequel"

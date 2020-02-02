@@ -10,19 +10,30 @@ task :default => :test
 
 MIGRATION_DIR = "migrate".freeze
 
-migrate = lambda do |env, version|
-  ENV["RACK_ENV"] = env
+migrate = lambda do |version|
   require_relative "db"
   require "logger"
   Sequel.extension :migration
   DB.loggers << Logger.new($stdout) if DB.loggers.empty?
-  Sequel::Migrator.apply(DB, MIGRATION_DIR, version)
+  Sequel::Migrator.apply(DB, 'migrate', version)
 end
 
-task :migrate do
-  migrate.call("development", nil)
-end
+namespace :db do
+  desc "migrate up"
+  task :migrate do
+    migrate.call(nil)
+  end
 
-task :down do
-  migrate.call("development", 0)
+  desc "migrate all the way to 0"
+  task :down, [:version] do |_, args|
+    version = (args[:version] || 0).to_i
+    migrate.call(version)
+  end
+
+  desc "rollback version"
+  task :rollback do |_, args|
+    require_relative "db"
+    current_version = DB.fetch("SELECT * FROM schema_info").first[:version]
+    migrate.call(current_version - 1)
+  end
 end

@@ -1,7 +1,8 @@
 require "roda"
-# require_relative "./models"
+require_relative "./models"
 
 class App < Roda
+  plugin :all_verbs
   plugin :timestamp_public
   plugin :json
   plugin :render, engine: "slim"
