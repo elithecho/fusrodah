@@ -1,4 +1,5 @@
 require "roda"
+require "net/http"
 require_relative "./models"
 
 class App < Roda
@@ -16,4 +17,6 @@ class App < Roda
       view :home
     end
   end
+
+  Dir['./helpers/*.rb'].each{|f| require f}
 end

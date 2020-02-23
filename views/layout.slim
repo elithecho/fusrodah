@@ -2,9 +2,10 @@ doctype 5
 html lang="en"
   head
     meta charset="UTF-8"
-    title Carpro
-    script src="#{timestamp_path './app.js'}" defer="true"
-    link rel="stylesheet" type="text/css" href="#{timestamp_path './app.css'}"
+    title Fusrodah
+
+    == webpack_script_tag "main.js"
+    == webpack_stylesheet_tag "main.css"
   body
-    div class="mt-12 mx-auto"
+    div class="mt-12 mx-auto container"
       == yield
