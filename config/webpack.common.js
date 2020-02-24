@@ -6,7 +6,7 @@ module.exports = {
   entry: [paths.src + '/app.js'],
   output: {
     path: paths.build,
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
     publicPath: '/',
   },
   module: {

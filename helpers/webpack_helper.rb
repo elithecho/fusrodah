@@ -35,7 +35,7 @@ class App
   def public_manifest_path(fn)
     file = File.read("./public/manifest.json")
     manifest = JSON.parse(file)
-    timestamp_path(manifest[fn])
+    manifest[fn]
   end
 
   def webpack_dev_server(fn)
@@ -48,11 +48,11 @@ class App
   def webpack_dev_server_up?
     return false unless ENV["RACK_ENV"] == "development"
 
-    begin
-      uri = URI(WEBPACK_DEV_SERVER)
-      Net::HTTP.get(uri) != ""
-    rescue
-      false
-    end
+    @_dev_server_running = begin
+                             uri = URI(WEBPACK_DEV_SERVER)
+                             Net::HTTP.get(uri) != ""
+                           rescue
+                             false
+                           end
   end
 end
