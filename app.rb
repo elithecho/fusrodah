@@ -8,7 +8,7 @@ class App < Roda
   plugin :json
   plugin :render, engine: "slim"
   plugin :symbol_views
-  plugin :symbolized_params
+  plugin :indifferent_params
 
   route do |r|
     r.public
