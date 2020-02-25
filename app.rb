@@ -1,5 +1,4 @@
 require "roda"
-require "net/http"
 require_relative "./models"
 
 class App < Roda
