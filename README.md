@@ -34,3 +34,7 @@ To start webpack and rerun, run
 ```
 foreman s -f Procfile.dev
 ```
+
+# License
+
+Fusrodah is released under the [MIT License](https://opensource.org/licenses/MIT).
