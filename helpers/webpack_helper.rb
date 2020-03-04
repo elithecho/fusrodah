@@ -3,32 +3,25 @@ require "net/http"
 class App
   WEBPACK_DEV_SERVER = "http://localhost:8080/"
 
-  def webpack_script_tag(fn)
-    files = fn.is_a?(Array) ? fn : [fn]
+  def webpack_tag(*files)
     files +=  ["runtime.js"] unless webpack_dev_server_up?
-    files.map{ |f| load_tag(f, :js) }.join
+
+    files.map {|f| load_tag f}.join
   end
 
-  def webpack_stylesheet_tag(fn)
-    return "" if webpack_dev_server_up?
-
-    files = fn.is_a?(Array) ? fn : [fn]
-    files.map{ |f| load_tag(f, :css) }.join
-  end
-
-  def load_tag(fn, type)
-    if type == :js
-      %(<script src="#{webpack_path(fn)}"></script>)
-    else
-      %(<link rel="stylesheet" href="#{webpack_path(fn)}">)
+  def load_tag(filename)
+    if filename.end_with?(".js")
+      %(<script src="#{webpack_path(filename)}" defer></script>)
+    elsif filename.end_with?(".css") && !webpack_dev_server_up?
+      %(<link rel="stylesheet" href="#{webpack_path(filename)}">)
     end
   end
 
-  def webpack_path(fn)
+  def webpack_path(filename)
     if webpack_dev_server_up?
-      webpack_dev_server(fn)
+      webpack_dev_server(filename)
     else
-      public_manifest_path(fn)
+      public_manifest_path(filename)
     end
   end
 

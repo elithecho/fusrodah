@@ -2,10 +2,10 @@ doctype 5
 html lang="en"
   head
     meta charset="UTF-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
     title Fusrodah
 
-    == webpack_script_tag "main.js"
-    == webpack_stylesheet_tag "main.css"
+    == webpack_tag "main.js", "main.css"
   body
     div class="mt-12 mx-auto container"
       == yield
