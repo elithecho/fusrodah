@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         // Extract any SCSS content and minimize
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
           /**
            * MiniCssExtractPlugin doesn't support HMR.
