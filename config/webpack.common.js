@@ -9,6 +9,14 @@ module.exports = {
     filename: '[name].[hash].js',
     publicPath: '/',
   },
+  resolve: {
+    alias: {
+      '@': paths.src,
+      //svelte: path.resolve('node_modules', 'svelte')
+    },
+    //extensions: ['.mjs', '.js', '.svelte'],
+    //mainFields: ['svelte', 'browser', 'module', 'main']
+  },
   module: {
     rules: [
       {
