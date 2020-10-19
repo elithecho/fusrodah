@@ -1,6 +1,6 @@
-require_relative "spec_helper"
+require "spec_helper"
 
-describe "MyApp" do
+describe "MyModel" do
   it "is truthy" do
     _(true).must_equal true
   end

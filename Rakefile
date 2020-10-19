@@ -36,4 +36,10 @@ namespace :db do
     current_version = DB.fetch("SELECT * FROM schema_info").first[:version]
     migrate.call(current_version - 1)
   end
+
+  desc "dump to file"
+  task :dump do
+    require_relative "config/env.rb"
+    sh %[sequel -D #{ENV["DATABASE_URL"]} > db/schema.rb]
+  end
 end
