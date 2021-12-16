@@ -26,6 +26,5 @@ group :development, :test do
 end
 
 group :test do
-  gem "minitest"
-  gem "minitest-hooks"
+  gem 'rspec'
 end
